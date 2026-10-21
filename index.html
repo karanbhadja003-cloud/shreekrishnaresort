@@ -697,7 +697,9 @@ button[data-lang]{border:0;background:transparent;font:inherit;cursor:pointer}
     }
     function link(){
       var q=encodeURIComponent(message());
-      wa.href='https://wa.me/919724208027?text='+q;
+      /* phones: wa.me opens the app. computers: WhatsApp Web, because the Windows desktop app garbles text passed through wa.me links */
+      var mobile=/Android|iPhone|iPad|iPod|Mobi/i.test(navigator.userAgent);
+      wa.href=(mobile?'https://wa.me/919724208027?text=':'https://web.whatsapp.com/send?phone=919724208027&text=')+q;
     }
     var warn=root.querySelector('[data-warn]');
     var fields={name:root.querySelector('[data-f=name]'),checkIn:root.querySelector('[data-f=checkIn]'),checkOut:root.querySelector('[data-f=checkOut]')};
