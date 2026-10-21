@@ -690,15 +690,14 @@ button[data-lang]{border:0;background:transparent;font:inherit;cursor:pointer}
     var s={name:'',checkIn:'',checkOut:'',note:'',room:'Not sure yet',adults:2,free:0,half:0,full:0};
     var wa=root.querySelector('[data-wa]'),rb=root.querySelector('[data-rooms]'),cb=root.querySelector('[data-counters]');
     function link(){
-      var kids=s.free+s.half+s.full,parts=[];
-      if(s.free)parts.push(s.free+' under 5');if(s.half)parts.push(s.half+' aged 5 to 7');if(s.full)parts.push(s.full+' aged 7 and above');
-      var g=s.adults+(s.adults===1?' adult':' adults')+(kids?', '+kids+(kids===1?' child':' children')+' ('+parts.join(', ')+')':'');
-      var L=['Hello Shree Krishna Resort, I would like to book a stay.'];
-      if(s.name.trim())L.push('Name: '+s.name.trim());
-      if(s.checkIn)L.push('Check-in: '+s.checkIn);
-      if(s.checkOut)L.push('Check-out: '+s.checkOut);
-      L.push('Room: '+s.room);L.push('Guests: '+g);
-      if(s.note.trim())L.push('Note: '+s.note.trim());
+      function dm(v){var m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(v||'');return m?m[3]+'-'+m[2]+'-'+m[1]:'Not provided';}
+      var L=['🏡 *NEW BOOKING REQUEST*','','━━━━━━━━━━━━━━━','',
+        '👤 *CUSTOMER DETAILS*','Name: '+(s.name.trim()||'Not provided'),'',
+        '📅 *BOOKING DETAILS*','Check-in: '+dm(s.checkIn),'Check-out: '+dm(s.checkOut),'Room Preference: '+s.room,'',
+        '👥 *GUEST DETAILS*','Adults: '+s.adults,'Children (Under 5): '+s.free,'Children (Age 5–7): '+s.half,'Children (Age 7+): '+s.full,'',
+        '📝 *SPECIAL REQUESTS*',(s.note.trim()||'None'),'',
+        '━━━━━━━━━━━━━━━','',
+        '🙏 Thank you! Please confirm room availability and total pricing.'];
       wa.href='https://wa.me/919724208027?text='+encodeURIComponent(L.join('\n'));
     }
     function draw(){
