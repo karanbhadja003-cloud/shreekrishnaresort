@@ -201,7 +201,6 @@ button[data-lang]{border:0;background:transparent;font:inherit;cursor:pointer}
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#EEE8B2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21l1.6-4.8A8.5 8.5 0 1 1 8 19.5z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1.3-1.5-2-1-1 .6c-.9-.4-1.6-1.1-2-2l.6-1-1-2z"/></svg>
       Send booking request on WhatsApp
     </a>
-    <a data-webwa href="https://web.whatsapp.com/send?phone=919724208027" target="_blank" rel="noopener" style="font-size: 13px; font-weight: 600; color: #006039; text-align: center; text-decoration: underline">Using a computer? Open in WhatsApp Web</a>
     <div style="font-size: 13px; color: #4C6A5E; line-height: 1.5; text-align: center">This opens WhatsApp with your details filled in. We reply to confirm availability and the price.</div>
   </div>
 
@@ -536,7 +535,6 @@ button[data-lang]{border:0;background:transparent;font:inherit;cursor:pointer}
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#EEE8B2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21l1.6-4.8A8.5 8.5 0 1 1 8 19.5z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1.3-1.5-2-1-1 .6c-.9-.4-1.6-1.1-2-2l.6-1-1-2z"/></svg>
       Send booking request on WhatsApp
     </a>
-    <a data-webwa href="https://web.whatsapp.com/send?phone=919724208027" target="_blank" rel="noopener" style="font-size: 13px; font-weight: 600; color: #006039; text-align: center; text-decoration: underline">Using a computer? Open in WhatsApp Web</a>
     <div style="font-size: 13px; color: #4C6A5E; line-height: 1.5; text-align: center">This opens WhatsApp with your details filled in. We reply to confirm availability and the price.</div>
   </div>
 
@@ -687,22 +685,19 @@ button[data-lang]{border:0;background:transparent;font:inherit;cursor:pointer}
   document.querySelectorAll('[data-bk]').forEach(function(root){
     var s={name:'',checkIn:'',checkOut:'',note:'',room:'Not sure yet',adults:2,free:0,half:0,full:0};
     var wa=root.querySelector('[data-wa]'),rb=root.querySelector('[data-rooms]'),cb=root.querySelector('[data-counters]');
-    var bar='━━━━━━━━━━━━━━━';
+    var bar='-----------------------------';
     function dm(v){var m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(v||'');return m?m[3]+'-'+m[2]+'-'+m[1]:'';}
     function message(){
-      return ['🏡 *NEW BOOKING REQUEST*','',bar,'',
-        '👤 *CUSTOMER DETAILS*','- Name: '+s.name.trim(),'',
-        '📅 *BOOKING DETAILS*','- Check-in: '+dm(s.checkIn),'- Check-out: '+dm(s.checkOut),'- Room Preference: '+s.room,'',
-        '👥 *GUEST DETAILS*','- Adults: '+s.adults,'- Children (Under 5): '+s.free,'- Children (Age 5–7): '+s.half,'- Children (Age 7+): '+s.full,'',
-        '📝 *SPECIAL REQUESTS*','- Message: '+(s.note.trim()||'None'),'',bar,'',
-        '🙏 *Thank you for your booking request!*','Please wait while we review your details. We will get back to you shortly with an update. 😊'].join('\n');
+      return ['*NEW BOOKING REQUEST*','',bar,'',
+        '*CUSTOMER DETAILS*','- Name: '+s.name.trim(),'',
+        '*BOOKING DETAILS*','- Check-in: '+dm(s.checkIn),'- Check-out: '+dm(s.checkOut),'- Room Preference: '+s.room,'',
+        '*GUEST DETAILS*','- Adults: '+s.adults,'- Children (Under 5): '+s.free,'- Children (Age 5-7): '+s.half,'- Children (Age 7+): '+s.full,'',
+        '*SPECIAL REQUESTS*','- Message: '+(s.note.trim()||'None'),'',bar,'',
+        '*Thank you for your booking request!*','Please wait while we review your details. We will get back to you shortly with an update.'].join('\n');
     }
-    var webl=root.querySelector('[data-webwa]');
-    if(/Android|iPhone|iPad|iPod|Mobi/i.test(navigator.userAgent)&&webl)webl.style.display='none';
     function link(){
       var q=encodeURIComponent(message());
       wa.href='https://wa.me/919724208027?text='+q;
-      if(webl)webl.href='https://web.whatsapp.com/send?phone=919724208027&text='+q;
     }
     var warn=root.querySelector('[data-warn]');
     var fields={name:root.querySelector('[data-f=name]'),checkIn:root.querySelector('[data-f=checkIn]'),checkOut:root.querySelector('[data-f=checkOut]')};
