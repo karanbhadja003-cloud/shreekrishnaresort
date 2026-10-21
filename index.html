@@ -197,10 +197,11 @@ button[data-lang]{border:0;background:transparent;font:inherit;cursor:pointer}
     <div style="font-size: 13px; color: #4C6A5E; line-height: 1.5">Children: under 5 stay free, 5 to 7 pay half, 7 and above pay full.</div>
 
     <div data-warn role="alert" style="display: none; background: #FBE9E7; border: 2px solid #B3261E; color: #7A1A14; border-radius: 14px; padding: 10px 14px; font-size: 14px; font-weight: 600; line-height: 1.45"></div>
-    <a href="https://wa.me/919724208027" data-wa style="display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 56px; border-radius: 28px; background: #203837; color: #EEE8B2; font-weight: 700; font-size: 17px; text-decoration: none; padding: 0 22px; box-sizing: border-box; border: 2px solid #C19D62; margin-top: 4px">
+    <a href="https://wa.me/919724208027" target="_blank" rel="noopener" data-wa target="_blank" rel="noopener" style="display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 56px; border-radius: 28px; background: #203837; color: #EEE8B2; font-weight: 700; font-size: 17px; text-decoration: none; padding: 0 22px; box-sizing: border-box; border: 2px solid #C19D62; margin-top: 4px">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#EEE8B2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21l1.6-4.8A8.5 8.5 0 1 1 8 19.5z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1.3-1.5-2-1-1 .6c-.9-.4-1.6-1.1-2-2l.6-1-1-2z"/></svg>
       Send booking request on WhatsApp
     </a>
+    <a data-webwa href="https://web.whatsapp.com/send?phone=919724208027" target="_blank" rel="noopener" style="font-size: 13px; font-weight: 600; color: #006039; text-align: center; text-decoration: underline">Using a computer? Open in WhatsApp Web</a>
     <div style="font-size: 13px; color: #4C6A5E; line-height: 1.5; text-align: center">This opens WhatsApp with your details filled in. We reply to confirm availability and the price.</div>
   </div>
 
@@ -531,10 +532,11 @@ button[data-lang]{border:0;background:transparent;font:inherit;cursor:pointer}
     <div style="font-size: 13px; color: #4C6A5E; line-height: 1.5">Children: under 5 stay free, 5 to 7 pay half, 7 and above pay full.</div>
 
     <div data-warn role="alert" style="display: none; background: #FBE9E7; border: 2px solid #B3261E; color: #7A1A14; border-radius: 14px; padding: 10px 14px; font-size: 14px; font-weight: 600; line-height: 1.45"></div>
-    <a href="https://wa.me/919724208027" data-wa style="display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 56px; border-radius: 28px; background: #203837; color: #EEE8B2; font-weight: 700; font-size: 17px; text-decoration: none; padding: 0 22px; box-sizing: border-box; border: 2px solid #C19D62; margin-top: 4px">
+    <a href="https://wa.me/919724208027" target="_blank" rel="noopener" data-wa target="_blank" rel="noopener" style="display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 56px; border-radius: 28px; background: #203837; color: #EEE8B2; font-weight: 700; font-size: 17px; text-decoration: none; padding: 0 22px; box-sizing: border-box; border: 2px solid #C19D62; margin-top: 4px">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#EEE8B2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21l1.6-4.8A8.5 8.5 0 1 1 8 19.5z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1.3-1.5-2-1-1 .6c-.9-.4-1.6-1.1-2-2l.6-1-1-2z"/></svg>
       Send booking request on WhatsApp
     </a>
+    <a data-webwa href="https://web.whatsapp.com/send?phone=919724208027" target="_blank" rel="noopener" style="font-size: 13px; font-weight: 600; color: #006039; text-align: center; text-decoration: underline">Using a computer? Open in WhatsApp Web</a>
     <div style="font-size: 13px; color: #4C6A5E; line-height: 1.5; text-align: center">This opens WhatsApp with your details filled in. We reply to confirm availability and the price.</div>
   </div>
 
@@ -695,10 +697,12 @@ button[data-lang]{border:0;background:transparent;font:inherit;cursor:pointer}
         '📝 *SPECIAL REQUESTS*','- Message: '+(s.note.trim()||'None'),'',bar,'',
         '🙏 *Thank you for your booking request!*','Please wait while we review your details. We will get back to you shortly with an update. 😊'].join('\n');
     }
+    var webl=root.querySelector('[data-webwa]');
+    if(/Android|iPhone|iPad|iPod|Mobi/i.test(navigator.userAgent)&&webl)webl.style.display='none';
     function link(){
       var q=encodeURIComponent(message());
       wa.href='https://wa.me/919724208027?text='+q;
-      wa.setAttribute('data-web','https://web.whatsapp.com/send?phone=919724208027&text='+q);
+      if(webl)webl.href='https://web.whatsapp.com/send?phone=919724208027&text='+q;
     }
     var warn=root.querySelector('[data-warn]');
     var fields={name:root.querySelector('[data-f=name]'),checkIn:root.querySelector('[data-f=checkIn]'),checkOut:root.querySelector('[data-f=checkOut]')};
@@ -726,10 +730,6 @@ button[data-lang]{border:0;background:transparent;font:inherit;cursor:pointer}
         e.preventDefault();
         var first=pr.missing.length?fields[pr.missing[0]]:fields.checkOut;
         first.focus();return;
-      }
-      /* WhatsApp Desktop on Windows can garble emoji from wa.me links, so desktop browsers use WhatsApp Web */
-      if(!/Android|iPhone|iPad|iPod|Mobi/i.test(navigator.userAgent)){
-        e.preventDefault();window.open(wa.getAttribute('data-web'),'_blank','noopener');
       }
     });
     SKR.onChange(function(){if(warn.style.display==='block')showWarn(problems());});
